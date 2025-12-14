@@ -68,6 +68,7 @@ const styles = stylex.create({
 
 export function DesignSystemDemo() {
   const todoService = useTodoService()
+  const todos = todoService.fetchTodos()
 
   const handleAddTestTodo = () => {
     todoService.createTodo({
@@ -202,12 +203,12 @@ export function DesignSystemDemo() {
           </Button>
         </div>
         <div {...stylex.props(styles.todoList)}>
-          {todoService.fetchTodos().length === 0 ? (
+          {todos.length === 0 ? (
             <div {...stylex.props(styles.emptyState)}>
               No todos yet. Click "Add Test Todo" to create one.
             </div>
           ) : (
-            todoService.fetchTodos().map((todo) => (
+            todos.map((todo) => (
               <div key={todo.id} {...stylex.props(styles.todoItem)}>
                 <div>
                   <div {...stylex.props(styles.todoText)}>
