@@ -53,6 +53,13 @@ const styles = stylex.create({
   errorMessage: {
     fontSize: '13px',
     color: danger.text,
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.375rem',
+  },
+  errorIcon: {
+    fontSize: '16px',
+    lineHeight: 1,
   },
 })
 
@@ -84,6 +91,9 @@ export function Textarea({
           id={`${registration.name}-error`}
           role="alert"
         >
+          <span {...stylex.props(styles.errorIcon)} aria-hidden="true">
+            ⚠
+          </span>
           {error}
         </span>
       )}
