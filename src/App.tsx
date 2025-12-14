@@ -1,7 +1,7 @@
-import { StyleXTest } from './components/StyleXTest'
+import { DesignSystemDemo } from './components/DesignSystemDemo'
 
 function App() {
-  return <StyleXTest />
+  return <DesignSystemDemo />
 }
 
 export default App
