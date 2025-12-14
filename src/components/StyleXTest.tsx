@@ -38,7 +38,7 @@ export function StyleXTest() {
       <p {...stylex.props(styles.text)}>
         This component uses:{' '}
         <span {...stylex.props(styles.highlight)}>
-          .styles.ts file for defineVars
+          .stylex.ts file for defineVars
         </span>
       </p>
       <p {...stylex.props(styles.text)}>
