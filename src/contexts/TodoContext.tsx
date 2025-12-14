@@ -1,5 +1,6 @@
-import { createContext, useState, ReactNode } from 'react'
-import { Todo } from '../types/todo'
+import { createContext, useState } from 'react'
+import type { ReactNode } from 'react'
+import type { Todo } from '../types/todo'
 
 type TodoContextType = {
   todos: Todo[]

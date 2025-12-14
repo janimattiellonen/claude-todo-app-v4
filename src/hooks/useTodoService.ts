@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid'
 import { useTodoContext } from './useTodoContext'
-import { Todo, CreateTodoInput, UpdateTodoInput } from '../types/todo'
+import type { Todo, CreateTodoInput, UpdateTodoInput } from '../types/todo'
 
 /**
  * Todo Service Hook
