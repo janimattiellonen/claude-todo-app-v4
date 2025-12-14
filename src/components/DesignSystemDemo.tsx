@@ -1,8 +1,10 @@
 import * as stylex from '@stylexjs/stylex'
 import { Button } from './Button'
+import { TodoForm } from './TodoForm'
 import { neutral } from '../styles/semanticColors.stylex'
 import { useTodoService } from '../hooks/useTodoService'
 import { useNotificationContext } from '../hooks/useNotificationContext'
+import type { CreateTodoFormData } from '../schemas/todoSchema'
 
 const styles = stylex.create({
   container: {
@@ -106,6 +108,15 @@ export function DesignSystemDemo() {
       type: 'info',
       message: 'Remember to save your changes before leaving.',
       duration: 4000,
+    })
+  }
+
+  const handleFormSubmit = (data: CreateTodoFormData) => {
+    todoService.createTodo(data)
+    addNotification({
+      type: 'success',
+      message: 'Todo created successfully!',
+      duration: 3000,
     })
   }
 
@@ -242,6 +253,15 @@ export function DesignSystemDemo() {
             Show Info
           </Button>
         </div>
+      </div>
+
+      <div {...stylex.props(styles.section)}>
+        <h2 {...stylex.props(styles.sectionTitle)}>Form Validation Test</h2>
+        <p {...stylex.props(styles.description)}>
+          Testing React Hook Form with Zod validation. Try submitting empty or
+          invalid data to see error messages.
+        </p>
+        <TodoForm onSubmit={handleFormSubmit} />
       </div>
 
       <div {...stylex.props(styles.section)}>
