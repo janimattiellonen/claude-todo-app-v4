@@ -34,6 +34,7 @@ import {
  * - textDisabled: Step 10 - Disabled text
  * - textWeak: Step 11 - Secondary text
  * - text: Step 12 - Primary text (high contrast)
+ * - textOnStrong: White - Text on solid backgrounds (for contrast)
  */
 
 // NEUTRAL variant - Uses GRAY scale
@@ -54,6 +55,7 @@ export const neutral = stylex.defineVars({
   textDisabled: GRAY.gray10,
   textWeak: GRAY.gray11,
   text: GRAY.gray12,
+  textOnStrong: '#ffffff',
 })
 
 // ACCENT variant - Uses JADE scale
@@ -74,6 +76,7 @@ export const accent = stylex.defineVars({
   textDisabled: JADE.jade10,
   textWeak: JADE.jade11,
   text: JADE.jade12,
+  textOnStrong: '#ffffff',
 })
 
 // INFORMATIVE variant - Uses SKY scale
@@ -94,6 +97,7 @@ export const informative = stylex.defineVars({
   textDisabled: SKY.sky10,
   textWeak: SKY.sky11,
   text: SKY.sky12,
+  textOnStrong: '#ffffff',
 })
 
 // DANGER variant - Uses RED scale
@@ -114,4 +118,5 @@ export const danger = stylex.defineVars({
   textDisabled: RED.red10,
   textWeak: RED.red11,
   text: RED.red12,
+  textOnStrong: '#ffffff',
 })

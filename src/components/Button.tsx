@@ -42,7 +42,7 @@ const baseStyles = stylex.create({
 const primaryStyles = stylex.create({
   neutral: {
     backgroundColor: neutral.backgroundStrong,
-    color: '#ffffff',
+    color: neutral.textOnStrong,
     borderColor: neutral.backgroundStrong,
     ':hover:not(:disabled)': {
       backgroundColor: neutral.backgroundStrongHover,
@@ -55,7 +55,7 @@ const primaryStyles = stylex.create({
   },
   accent: {
     backgroundColor: accent.backgroundStrong,
-    color: '#ffffff',
+    color: accent.textOnStrong,
     borderColor: accent.backgroundStrong,
     ':hover:not(:disabled)': {
       backgroundColor: accent.backgroundStrongHover,
@@ -68,7 +68,7 @@ const primaryStyles = stylex.create({
   },
   informative: {
     backgroundColor: informative.backgroundStrong,
-    color: '#ffffff',
+    color: informative.textOnStrong,
     borderColor: informative.backgroundStrong,
     ':hover:not(:disabled)': {
       backgroundColor: informative.backgroundStrongHover,
@@ -81,7 +81,7 @@ const primaryStyles = stylex.create({
   },
   danger: {
     backgroundColor: danger.backgroundStrong,
-    color: '#ffffff',
+    color: danger.textOnStrong,
     borderColor: danger.backgroundStrong,
     ':hover:not(:disabled)': {
       backgroundColor: danger.backgroundStrongHover,
