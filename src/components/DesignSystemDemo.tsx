@@ -1,6 +1,7 @@
 import * as stylex from '@stylexjs/stylex'
 import { Button } from './Button'
 import { neutral } from '../styles/semanticColors.stylex'
+import { useTodoService } from '../hooks/useTodoService'
 
 const styles = stylex.create({
   container: {
@@ -33,9 +34,54 @@ const styles = stylex.create({
     color: neutral.textWeak,
     marginBottom: '0.5rem',
   },
+  todoList: {
+    marginTop: '1rem',
+    padding: '1rem',
+    backgroundColor: neutral.backgroundWeak,
+    borderRadius: '6px',
+    minHeight: '100px',
+  },
+  todoItem: {
+    padding: '0.75rem',
+    marginBottom: '0.5rem',
+    backgroundColor: neutral.background,
+    borderRadius: '4px',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    borderColor: neutral.border,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  todoText: {
+    fontSize: '14px',
+    color: neutral.text,
+  },
+  emptyState: {
+    fontSize: '14px',
+    color: neutral.textWeak,
+    fontStyle: 'italic',
+    textAlign: 'center',
+    padding: '2rem',
+  },
 })
 
 export function DesignSystemDemo() {
+  const todoService = useTodoService()
+
+  const handleAddTestTodo = () => {
+    todoService.createTodo({
+      title: `Test Todo ${Date.now()}`,
+      description: 'This is a test todo created to verify TodoService works',
+      priority: 'medium',
+      isDone: false,
+    })
+  }
+
+  const handleDeleteTodo = (id: string) => {
+    todoService.deleteTodo(id)
+  }
+
   return (
     <div {...stylex.props(styles.container)}>
       <h1 {...stylex.props(styles.title)}>
@@ -139,6 +185,50 @@ export function DesignSystemDemo() {
           ✓ Hover and active states properly styled
           <br />✓ Disabled state styling applied
         </p>
+      </div>
+
+      <div {...stylex.props(styles.section)}>
+        <h2 {...stylex.props(styles.sectionTitle)}>TodoService Test</h2>
+        <p {...stylex.props(styles.description)}>
+          Testing CRUD operations: Create, Read, and Delete
+        </p>
+        <div {...stylex.props(styles.buttonGrid)}>
+          <Button
+            variant="accent"
+            styleType="primary"
+            onClick={handleAddTestTodo}
+          >
+            Add Test Todo
+          </Button>
+        </div>
+        <div {...stylex.props(styles.todoList)}>
+          {todoService.fetchTodos().length === 0 ? (
+            <div {...stylex.props(styles.emptyState)}>
+              No todos yet. Click "Add Test Todo" to create one.
+            </div>
+          ) : (
+            todoService.fetchTodos().map((todo) => (
+              <div key={todo.id} {...stylex.props(styles.todoItem)}>
+                <div>
+                  <div {...stylex.props(styles.todoText)}>
+                    <strong>{todo.title}</strong>
+                  </div>
+                  <div {...stylex.props(styles.description)}>
+                    Priority: {todo.priority || 'none'} | Created:{' '}
+                    {todo.createdAt.toLocaleString()}
+                  </div>
+                </div>
+                <Button
+                  variant="danger"
+                  styleType="secondary"
+                  onClick={() => handleDeleteTodo(todo.id)}
+                >
+                  Delete
+                </Button>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   )
