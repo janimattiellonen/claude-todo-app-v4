@@ -2,6 +2,7 @@ import * as stylex from '@stylexjs/stylex'
 import { Button } from './Button'
 import { neutral } from '../styles/semanticColors.stylex'
 import { useTodoService } from '../hooks/useTodoService'
+import { useNotificationContext } from '../hooks/useNotificationContext'
 
 const styles = stylex.create({
   container: {
@@ -69,6 +70,7 @@ const styles = stylex.create({
 export function DesignSystemDemo() {
   const todoService = useTodoService()
   const todos = todoService.fetchTodos()
+  const { addNotification } = useNotificationContext()
 
   const handleAddTestTodo = () => {
     todoService.createTodo({
@@ -81,6 +83,30 @@ export function DesignSystemDemo() {
 
   const handleDeleteTodo = (id: string) => {
     todoService.deleteTodo(id)
+  }
+
+  const showSuccessNotification = () => {
+    addNotification({
+      type: 'success',
+      message: 'Todo created successfully!',
+      duration: 3000,
+    })
+  }
+
+  const showErrorNotification = () => {
+    addNotification({
+      type: 'error',
+      message: 'Failed to save todo. Please try again.',
+      duration: 5000,
+    })
+  }
+
+  const showInfoNotification = () => {
+    addNotification({
+      type: 'info',
+      message: 'Remember to save your changes before leaving.',
+      duration: 4000,
+    })
   }
 
   return (
@@ -186,6 +212,36 @@ export function DesignSystemDemo() {
           ✓ Hover and active states properly styled
           <br />✓ Disabled state styling applied
         </p>
+      </div>
+
+      <div {...stylex.props(styles.section)}>
+        <h2 {...stylex.props(styles.sectionTitle)}>Notification System Test</h2>
+        <p {...stylex.props(styles.description)}>
+          Testing notification variants with auto-dismiss functionality
+        </p>
+        <div {...stylex.props(styles.buttonGrid)}>
+          <Button
+            variant="accent"
+            styleType="primary"
+            onClick={showSuccessNotification}
+          >
+            Show Success
+          </Button>
+          <Button
+            variant="danger"
+            styleType="primary"
+            onClick={showErrorNotification}
+          >
+            Show Error
+          </Button>
+          <Button
+            variant="informative"
+            styleType="primary"
+            onClick={showInfoNotification}
+          >
+            Show Info
+          </Button>
+        </div>
       </div>
 
       <div {...stylex.props(styles.section)}>
