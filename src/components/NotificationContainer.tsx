@@ -19,7 +19,7 @@ export function NotificationContainer() {
   const { notifications, removeNotification } = useNotificationContext()
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = []
+    const timers: ReturnType<typeof setTimeout>[] = []
 
     notifications.forEach((notification) => {
       if (notification.duration) {

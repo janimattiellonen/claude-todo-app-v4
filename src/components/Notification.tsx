@@ -27,7 +27,7 @@ const baseStyles = stylex.create({
   },
   closeButton: {
     backgroundColor: 'transparent',
-    border: 'none',
+    borderStyle: 'none',
     cursor: 'pointer',
     fontSize: '18px',
     lineHeight: 1,
